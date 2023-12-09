@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+import "google/api/httpbody.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/lmllrjr/grpc-http/pb";
+
+package pb;
+
+// The greeter service definition
+service Greeter {
+	// Greet sends a personal greet message to a given name.
+  rpc Greet(GreetRequest) returns (GreetReply) {
+		option (google.api.http) = {
+			post: "/v1/greet"
+			body: "*"
+		};
+	}
+
+	// HelloWorld outputs `hello world`.
+  rpc HelloWorld(google.protobuf.Empty) returns (google.api.HttpBody) {
+		option (google.api.http) = {
+			get: "/v1/helloworld"
+		};
+	}
+}
+
+// The request message containing the user's name
+message GreetRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message GreetReply {
+  string message = 1;
+}
