@@ -24,6 +24,10 @@ make all
 ```
 
 ```sh
+go run main.go
+```
+
+```sh
 go run main.go -endpoint='localhost:9090' -addr=':9090' -network='tcp'
 ```
 
